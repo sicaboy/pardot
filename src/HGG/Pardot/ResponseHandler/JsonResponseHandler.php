@@ -41,6 +41,8 @@ class JsonResponseHandler extends AbstractResponseHandler
                 $this->parseMultiRecordResult($object, $this->data);
             } elseif (array_key_exists($object, $this->data)) {
                 $this->parseSingleRecordResult($object, $this->data);
+            } elseif (isset(array_keys($this->data)[1])) {
+                $this->parseSingleRecordResult(array_keys($this->data)[1], $this->data);
             } elseif (array_key_exists('api_key', $this->data)) {
                 $this->resultCount = 0;
                 $this->result = $this->data['api_key'];
